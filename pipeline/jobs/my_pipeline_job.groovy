@@ -3,10 +3,6 @@ pipelineJob('my-pipeline-job') {
     stringParam('APP_NAME', '', 'The application name to be built')
   }
 
-  configure { project ->
-    project / 'customWorkspace'('services/app')
-  }
-
   definition {
     cpsScm {
       scm {
@@ -14,7 +10,7 @@ pipelineJob('my-pipeline-job') {
           remote {
             url('https://github.com/howseman/jenkins-pipelines.git')
           }
-          branch('$JOB_BRANCH_NAME')
+          branch('origin/**')
         }
       }
       scriptPath('Jenkinsfile')

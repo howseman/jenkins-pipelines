@@ -4,9 +4,17 @@ pipeline {
     string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'The branch to be built')
   }
   stages {
+    stage('Checkout') {
+      steps {
+        checkout([
+          $class: 'GitSCM',
+          branches: [[name: "${params.BRANCH_NAME}"]],
+          userRemoteConfigs: [[url: 'https://github.com/howseman/jenkins-pipelines.git']]]
+        )
+      }
+    }
     stage('Build') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: "${params.BRANCH_NAME}"]], userRemoteConfigs: [[url: 'https://github.com/howseman/jenkins-pipelines.git']]])
         sh 'npm install'
         sh 'npm run build'
       }
