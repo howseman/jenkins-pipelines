@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment {
+    WOKING_DIR = "services/${params.APP_NAME}"
+  }
+
   stages {
     stage('Checkout') {
       steps {
@@ -13,7 +17,8 @@ pipeline {
     }
     stage('Build') {
       steps {
-        dir("services/${params.APP_NAME}") {
+        dir(env.WOKING_DIR) {
+          sh 'ls -al'
           sh 'npm install'
           sh 'npm run build'
         }
