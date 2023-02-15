@@ -1,8 +1,6 @@
 pipeline {
   agent any
-  parameters {
-    string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'The branch to be built')
-  }
+
   stages {
     stage('Checkout') {
       steps {
@@ -15,8 +13,10 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'npm install'
-        sh 'npm run build'
+        dir("services/${params.APP_NAME}") {
+          sh 'npm install'
+          sh 'npm run build'
+        }
       }
     }
   }

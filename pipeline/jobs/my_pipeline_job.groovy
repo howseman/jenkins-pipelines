@@ -1,6 +1,7 @@
 pipelineJob('my-pipeline-job') {
   parameters {
     stringParam('APP_NAME', '', 'The application name to be built')
+    stringParam('BRANCH_NAME', 'main', 'The branch to be built')
   }
 
   definition {
@@ -13,7 +14,7 @@ pipelineJob('my-pipeline-job') {
           branch('origin/**')
         }
       }
-      scriptPath('Jenkinsfile')
+      scriptPath('services/app/Jenkinsfile')
     }
   }
   
