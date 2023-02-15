@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: "${params.BRANCH_NAME}"]], userRemoteConfigs: [[url: 'https://github.com/your/repo']]])
+        checkout([$class: 'GitSCM', branches: [[name: "${params.BRANCH_NAME}"]], userRemoteConfigs: [[url: 'https://github.com/howseman/jenkins-pipelines.git']]])
         sh 'npm install'
         sh 'npm run build'
       }

@@ -5,7 +5,7 @@ job('build-nodejs-app') {
   scm {
     git {
       remote {
-        url('https://github.com/your/repo')
+        url('https://github.com/howseman/jenkins-pipelines.git')
       }
       branch('$JOB_BRANCH_NAME')
     }
